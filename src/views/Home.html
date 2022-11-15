@@ -43,7 +43,7 @@
 
         let deleteTransaction=()=>{
             console.log('clicked')
-            let id="6372330f6b4e65b3db56acab"
+            let id="6372330d6b4e65b3db56aca1"
             fetch('/transactions/',{
                 method:'DELETE',
                 headers: {
@@ -56,7 +56,7 @@
 
                 })
             })
-            .then((result)=>console.log(result,'Transaction Added'))
+            .then((result)=>console.log(result,'Transaction Deleted'))
             .catch((err)=>console.log(err))
 
         }
