@@ -1,15 +1,14 @@
-import express from "express";
+import express from 'express';
+import requestIp from 'request-ip';
 
 const app = express();
+const port = 3000;
 
-app.get("/", (req, res) => {
-  console.log(req.socket.remoteAddress);
-  console.log(req.ip);
-  res.send("your IP is: " + req.ip);
+app.get('/', (req, res) => {
+  const clientIp = requestIp.getClientIp(req);
+  res.send(`Your IP Address is ${clientIp}.`);
 });
 
-const PORT = process.env.PORT || 3000;
-
-app.listen(PORT, () => {
-  console.log("server running on port: " + PORT);
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`);
 });
