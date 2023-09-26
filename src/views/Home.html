@@ -1,66 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Home Page</h1>
-    <button onclick="addTransaction()">Add Transaction</button>
-    <button onclick="displayAllTransactions()">Display All Transactions</button> 
-    <button onclick="deleteTransaction()">Delete a transaction</button> 
-    <script>
-        const displayAllTransactions=()=>{
-            console.log('clicked')
-            fetch('/transactions')
-            .then(response => response.json())
-            .then(data => console.log(data));
-        }
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			http-equiv="X-UA-Compatible"
+			content="IE=edge" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<h1>Home Page</h1>
+		<button onclick="addTransaction()">Add Transaction</button>
+		<button onclick="displayAllTransactions()">Display All Transactions</button>
+		<button onclick="deleteTransaction()">Delete a transaction</button>
+		<script>
+			const displayAllTransactions = () => {
+				console.log('clicked');
+				fetch('/transactions')
+					.then((response) => response.json())
+					.then((data) => console.log(data));
+			};
 
-        let addTransaction=()=>{
-            let date=Date();
-            console.log('clicked')
-            fetch('/transactions',{
-                method:'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                        },
-                body:JSON.stringify({
-                    amount:100000,
-                    text: 'Transaction from Post API',
-                    createdAt:date
-                
+			let addTransaction = () => {
+				let date = Date();
+				console.log('clicked');
+				fetch('/transactions', {
+					method: 'POST',
+					headers: {
+						Accept: 'application/json',
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({
+						amount: 100000,
+						text: 'Transaction from Post API',
+						createdAt: date,
+					}),
+				})
+					.then((result) => console.log(result, 'Transaction Added'))
+					.catch((err) => console.log(err));
+			};
 
-                })
-            })
-            .then((result)=>console.log(result,'Transaction Added'))
-            .catch((err)=>console.log(err))
-
-        }
-
-        let deleteTransaction=()=>{
-            console.log('clicked')
-            let id="6372330d6b4e65b3db56aca1"
-            fetch('/transactions/',{
-                method:'DELETE',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                        },
-                body:JSON.stringify({
-                    id:id
-                
-
-                })
-            })
-            .then((result)=>console.log(result,'Transaction Deleted'))
-            .catch((err)=>console.log(err))
-
-        }
-
-    </script>
-</body>
+			let deleteTransaction = () => {
+				console.log('clicked');
+				let id = '6372330d6b4e65b3db56aca1';
+				fetch('/transactions/', {
+					method: 'DELETE',
+					headers: {
+						Accept: 'application/json',
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({
+						id: id,
+					}),
+				})
+					.then((result) => console.log(result, 'Transaction Deleted'))
+					.catch((err) => console.log(err));
+			};
+		</script>
+	</body>
 </html>

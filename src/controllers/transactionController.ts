@@ -1,5 +1,5 @@
-import Transaction from "../models/transaction";
-import { Request, Response } from "express";
+import Transaction from '../models/transaction';
+import { Request, Response } from 'express';
 
 let getAllTransactions = (req: Request, res: Response) => {
 	Transaction.find()
@@ -19,7 +19,7 @@ let addTransaction = (req: Request, res: Response) => {
 		.save()
 		.then((result) => {
 			res.status(200);
-			res.send({ detail: "Transaction added successfully !" });
+			res.send({ detail: 'Transaction added successfully !' });
 		})
 		.catch((err) => {
 			res.status(400);
